@@ -1,7 +1,7 @@
 package boojongmin.server
 
-import boojongmin.server.entity.Member
-import boojongmin.server.entity.MemberRespository
+import boojongmin.server.domain.Member
+import boojongmin.server.repository.MemberRespository
 import org.springframework.boot.CommandLineRunner
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication
@@ -24,6 +24,7 @@ class ServerApplication {
         repo.findById(1)
                 .ifPresent {
                     it.username = "update username1"
+                    it.changeState(Member.State.ACTIVE)
                     repo.save(it)
                 }
     }

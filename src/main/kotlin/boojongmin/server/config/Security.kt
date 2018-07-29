@@ -1,6 +1,6 @@
 package boojongmin.server.config
 
-import boojongmin.server.entity.MemberRespository
+import boojongmin.server.repository.MemberRespository
 import org.springframework.security.config.annotation.web.builders.HttpSecurity
 import org.springframework.security.config.annotation.web.builders.WebSecurity
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity
@@ -25,7 +25,7 @@ class SecurityConfig: WebSecurityConfigurerAdapter() {
             .anyRequest().authenticated()
             .and()
                 .formLogin()
-                .defaultSuccessUrl("/admin/", true)
+                .defaultSuccessUrl("/admin", true)
             .permitAll()
             .and()
                 .csrf().disable()

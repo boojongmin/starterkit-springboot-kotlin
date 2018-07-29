@@ -1,5 +1,6 @@
-package boojongmin.server.entity
+package boojongmin.server.domain
 
+import boojongmin.server.domain.Member.State.INACTIVE
 import org.hibernate.envers.Audited
 import org.springframework.data.annotation.CreatedBy
 import org.springframework.data.annotation.CreatedDate
@@ -23,7 +24,6 @@ open class Auditable<U> {
 
     @LastModifiedBy
     private val lastModifiedBy: U? = null
-
     @LastModifiedDate
     private val lastModifiedDate: Date? = null
 }
@@ -34,9 +34,18 @@ open class Auditable<U> {
 data class Member(
         @Id @GeneratedValue(strategy = IDENTITY) var id: Long,
         var username: String?,
-        var password: String?
+        var password: String?,
+        @Enumerated(EnumType.STRING) @Column(length = 20) var state: Member.State
 ): Auditable<String>() {
-    constructor( username: String, password: String ): this(0L, username, password)
-    constructor(): this(0L, null, null)
+    constructor( username: String, password: String ): this(0L, username, password, INACTIVE)
+    constructor(): this(0L, null, null, INACTIVE)
+
+    enum class State {
+        INACTIVE, ACTIVE
+    }
+
+    fun changeState(state: Member.State) {
+        this.state = state
+    }
 }
 

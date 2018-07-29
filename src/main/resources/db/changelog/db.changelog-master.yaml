@@ -9,6 +9,7 @@ databaseChangeLog:
         - {column: {name: id, type: long, autoIncrement: true, constraints: {primaryKey: true, nullable: false} }}
         - {column: {name: username, type: varchar(255) , constraints: {nullable: false} }}
         - {column: {name: password, type: varchar(255) , constraints: {nullable: false} }}
+        - {column: {name: state, type: varchar(15)}}
         - {column: {name: created_by, type: varchar(255)}}
         - {column: {name: last_modified_by, type: varchar(255)}}
         - {column: {name: created_date, type: DATETIME }}
@@ -25,6 +26,7 @@ databaseChangeLog:
         - {column: {name: revtype, type: tinyint }}
         - {column: {name: username, type: varchar(255)}}
         - {column: {name: password, type: varchar(255)}}
+        - {column: {name: state, type: varchar(15)}}
         - {column: {name: created_by, type: varchar(255)}}
         - {column: {name: last_modified_by, type: varchar(255)}}
         - {column: {name: created_date, type: DATETIME }}
@@ -40,12 +42,12 @@ databaseChangeLog:
         - {column: {name: rev, type: int, autoIncrement: true, constraints: {primaryKey: true, nullable: false} }}
         - {column: {name: revtstmp, type: bigint }}
 
-- changeSet:
-    id: 4
-    author: james.boo
-    changes:
-      - insert:
-          tableName: member
-          columns:
-          - {column: {name: username, value: Marcel}}
-          - {column: {name: password, value: Overdijk}}
+#- changeSet:
+#    id: 4
+#    author: james.boo
+#    changes:
+#      - insert:
+#          tableName: member
+#          columns:
+#          - {column: {name: username, value: system }}
+#          - {column: {name: password, value: system }}
